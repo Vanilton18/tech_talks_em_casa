@@ -55,7 +55,7 @@ public class ConsumoGasolinaTest {
     }
 
     @Test
-    public void CadastroDeAbastecimento() throws InterruptedException {
+    public void CadastroDeAbastecimento() {
         assertEquals("Abastecimentos", driver.findElement(By.id("android:id/action_bar_title")).getText());
         driver.findElement(By.id("br.com.consumogasolina:id/action_opcoes")).click();
 
