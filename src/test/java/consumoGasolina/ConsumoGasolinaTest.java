@@ -11,10 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -36,7 +32,13 @@ public class ConsumoGasolinaTest {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability(AndroidMobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
         cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
-        cap.setCapability(MobileCapabilityType.APP, "/Users/vaniltonpinheiro/projetos/tech_talks_em_casa/apk/consumo_gasolina.apk");
+
+        /* Instalando com path absoluto */
+        //cap.setCapability(MobileCapabilityType.APP, "/Users/vaniltonpinheiro/projetos/tech_talks_em_casa/apk/consumo_gasolina.apk");
+
+        /* Instalando com URL */
+        cap.setCapability(MobileCapabilityType.APP,
+                new URL("https://github.com/Vanilton18/tech_talks_em_casa/raw/master/apk/consumo_gasolina.apk.zip"));
 
         // Setando o pacote da aplicação para as capacidades
         cap.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "br.com.consumogasolina");
@@ -55,7 +57,7 @@ public class ConsumoGasolinaTest {
     }
 
     @Test
-    public void CadastroDeAbastecimento() {
+    public void CadastroDeAbastecimento()  {
         assertEquals("Abastecimentos", driver.findElement(By.id("android:id/action_bar_title")).getText());
         driver.findElement(By.id("br.com.consumogasolina:id/action_opcoes")).click();
 
